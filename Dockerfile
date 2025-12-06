@@ -4,14 +4,13 @@ WORKDIR /app
 
 RUN apk add --no-cache libc6-compat
 
+# Copy PocketBase binary
 COPY pocketbase /app/pocketbase
 RUN chmod +x /app/pocketbase
 
-EXPOSE 10000
+# Copy your local pb_data into the container
+COPY pb_data /data
 
-# Superuser credentials
-ENV ADMIN_EMAIL=rob@example.com
-ENV ADMIN_PASSWORD=SuperSecret123
-ENV ADMIN_NAME=Rob
+EXPOSE 10000
 
 CMD ["/app/pocketbase","serve","--http=0.0.0.0:10000","--dir=/data"]
