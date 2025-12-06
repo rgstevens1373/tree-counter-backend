@@ -2,15 +2,15 @@ FROM alpine:latest
 
 WORKDIR /app
 
-# Install glibc compatibility (needed by PB)
+# Install glibc compatibility
 RUN apk add --no-cache libc6-compat
 
-# Copy the PB binary
+# Copy PocketBase binary
 COPY pocketbase /app/pocketbase
 RUN chmod +x /app/pocketbase
 
-# Expose Render's port
+# Expose the port Render will use
 EXPOSE 10000
 
-# Run PB
+# Start PocketBase
 CMD ["/app/pocketbase", "serve", "--http=0.0.0.0:10000"]
