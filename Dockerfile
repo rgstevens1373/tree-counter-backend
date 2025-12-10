@@ -16,4 +16,4 @@ COPY pb_data /data
 EXPOSE 10000
 
 # Start PocketBase using /data as the database directory
-sh -c './pocketbase serve --http=0.0.0.0:$PORT --dir=./pb_data'
+CMD ["sh", "-c", "./pocketbase serve --http=0.0.0.0:$PORT --dir=./pb_data"]
